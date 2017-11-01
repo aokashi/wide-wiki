@@ -35,6 +35,7 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+  // ejs で扱える変数は、 res.locals に入れます。
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
