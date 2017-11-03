@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var fs = require('fs');
+var markdown = require('markdown').markdown;
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -27,9 +29,16 @@ app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  fs.readFile(__dirname + '/content' + req.url + '.md', "utf-8", (fileError, fileData) => {
+    if (fileError) {
+      var err = new Error('Not Found');
+      err.status = 404;
+      next(err);
+    } else {
+      res.locals.content = markdown.toHTML(fileData);
+      res.render('content');
+    }
+  });
 });
 
 // error handler

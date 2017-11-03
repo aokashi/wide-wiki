@@ -9,4 +9,20 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.post('/', function(req, res, next) {
+  console.log(req.body);
+  res.locals.title = req.body.title;
+  res.render('index');
+});
+
+function isFileExist(filePath) {
+  try {
+    fs.statSync(filePath);
+    return true;
+  } catch(e) {
+    return false;
+  }
+  return false;
+}
+
 module.exports = router;
