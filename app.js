@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var markdown = require('markdown').markdown;
 
+var config = require('./config.json');
+
 var edit = require('./routes/edit');
 var list = require('./routes/list');
 var search = require('./routes/search');
@@ -39,7 +41,8 @@ app.use(function(req, res, next) {
       next(err);
     } else {
       res.render('content', {
-        fileName: req.url,
+        siteConfig: config,
+        fileName: req.url.substr(1),
         fileContent: markdown.toHTML(fileData)
       });
     }

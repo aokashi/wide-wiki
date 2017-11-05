@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <title><%= fileName %></title>
+    <title><%= fileName %> - <%= siteConfig.siteName %></title>
   </head>
+  <header>
+    <h1><%= siteConfig.siteName %></h1>
+  </header>
   <body>
     <%- fileContent %>
   </body>
