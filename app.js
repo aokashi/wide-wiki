@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var fs = require('fs');
+var markdown = require('markdown').markdown;
 
 var edit = require('./routes/edit');
 var list = require('./routes/list');
@@ -28,10 +30,20 @@ app.use('/list', list);
 app.use('/search', search);
 
 app.use(function(req, res, next) {
-  // catch 404 and forward to error handler
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  // contentディレクトリの中にmarkdownファイルを置きます。
+  fs.readFile(path.join(__dirname, 'content', req.url + '.md'), "UTF-8", function(fileError, fileData) {
+    if (fileError) {
+      // catch 404 and forward to error handler
+      var err = new Error('Not Found');
+      err.status = 404;
+      next(err);
+    } else {
+      res.render('content', {
+        fileName: req.url,
+        fileContent: markdown.toHTML(fileData)
+      });
+    }
+  });
 });
 
 // error handler
