@@ -33,16 +33,14 @@ app.use(function(req, res, next) {
   // contentディレクトリの中にmarkdownファイルを置きます。
   fs.readFile(path.join(__dirname, 'content', req.url + '.md'), "UTF-8", function(fileError, fileData) {
     if (fileError) {
-      // catch 404 and forward to error handler
-      var err = new Error('Not Found');
-      err.status = 404;
-      next(err);
+      res.locals.fileContent = req.url.substr(1) + "の記事は見つかりませんでした。ツールバーの「編集」から新規作成ができます。";
     } else {
-      res.render('content', {
-        fileName: req.url,
-        fileContent: markdown.toHTML(fileData)
-      });
+      res.locals.fileContent = markdown.toHTML(fileData);
     }
+    res.render('content', {
+      fileName: req.url.substr(1),
+      fileURL: req.url
+    });
   });
 });
 
