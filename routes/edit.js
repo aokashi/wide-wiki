@@ -6,17 +6,19 @@ var path = require('path');
 
 /* 編集画面 */
 router.get('/*', function(req, res, next) {
-  console.log(path.join(path.resolve('content'), req.url + '.md') + 'を開きます。');
-  fs.readFile(path.join(path.resolve('content'), req.url + '.md'), "UTF-8", function(fileError, fileData) {
-    var fileContent;
-    if (fileError) {
-      fileContent = "";
-    } else {
-      fileContent = fileData;
+  var fileURL = req.url;
+  if (fileURL === '/') {
+    fileURL += 'index';
+  }
+  console.log(path.join(path.resolve('content'), fileURL + '.md') + 'を開きます。');
+  fs.readFile(path.join(path.resolve('content'), fileURL + '.md'), "UTF-8", function(fileError, fileData) {
+    var fileContent = '';
+    if (!fileError) {
+      fileContent += fileData;
     }
     res.render('edit', {
-      fileName: req.url.substr(1),
-      fileURL: req.url,
+      fileName: fileURL.substr(1),
+      fileURL: fileURL,
       fileContent: fileContent
     })
   });

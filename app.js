@@ -30,16 +30,20 @@ app.use('/list', list);
 app.use('/search', search);
 
 app.use(function(req, res, next) {
+  var fileURL = req.url;
+  if (fileURL === '/') {
+    fileURL += 'index'; // ルートの記事はindexから参照されます。
+  }
   // contentディレクトリの中にmarkdownファイルを置きます。
-  fs.readFile(path.join(__dirname, 'content', req.url + '.md'), "UTF-8", function(fileError, fileData) {
+  fs.readFile(path.join(__dirname, 'content', fileURL + '.md'), "UTF-8", function(fileError, fileData) {
     if (fileError) {
-      res.locals.fileContent = req.url.substr(1) + "の記事は見つかりませんでした。ツールバーの「編集」から新規作成ができます。";
+      res.locals.fileContent = fileURL.substr(1) + "の記事は見つかりませんでした。ツールバーの「編集」から新規作成ができます。";
     } else {
       res.locals.fileContent = markdown.toHTML(fileData);
     }
     res.render('content', {
-      fileName: req.url.substr(1),
-      fileURL: req.url
+      fileName: fileURL.substr(1),
+      fileURL: fileURL
     });
   });
 });
