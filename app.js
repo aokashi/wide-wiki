@@ -8,6 +8,7 @@ var fs = require('fs');
 var markdown = require('markdown').markdown;
 
 var index = require('./routes/index');
+var edit = require('./routes/edit');
 var users = require('./routes/users');
 
 var app = express();
@@ -25,12 +26,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/edit', edit);
 app.use('/users', users);
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   fs.readFile(__dirname + '/content' + req.url + '.md', "utf-8", (fileError, fileData) => {
     if (fileError) {
+      // catch 404 and forward to error handler
       var err = new Error('Not Found');
       err.status = 404;
       next(err);
