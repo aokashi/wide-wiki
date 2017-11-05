@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+#contentText {
+  width: 20em;
+  height: 30em;
+}

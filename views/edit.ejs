@@ -4,19 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/stylesheets/style.css">
   <title><%= title %> の編集</title>
 </head>
 <body>
   <div id="toolBar">
-    <button id="toolBar-backBtn">戻る</button>
-    <button id="toolBar-listBtn">一覧</button>
-    <button id="toolBar-searchBtn">検索</button>
+    <form method="GET">
+      <button id="toolBar-backBtn" formaction="<%= title %>">戻る</button>
+      <button id="toolBar-listBtn">一覧</button>
+      <button id="toolBar-searchBtn">検索</button>
+    </form>
   </div>
   <form method="POST" action="/edit/">
     <input type="hidden" name="name" value="<%= title %>">
     <textarea id="contentText" name="content"><%= content %></textarea>
     <div id="confirmBar">
-      <input type="submit" id="confirmBar-saveBtn" value="保存">
+      <button id="confirmBar-saveBtn">保存</button>
     </div>
   </form>
 </body>

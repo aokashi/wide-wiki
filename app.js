@@ -37,6 +37,7 @@ app.use(function(req, res, next) {
       err.status = 404;
       next(err);
     } else {
+      res.locals.name = req.url;
       res.locals.content = markdown.toHTML(fileData);
       res.render('content');
     }

@@ -4,14 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="stylesheets/style.css">
-  <title>Sample</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%= name %></title>
 </head>
 <body>
   <div id="toolBar">
-    <button id="toolBar-editBtn">編集</button>
-    <button id="toolBar-listBtn">一覧</button>
-    <button id="toolBar-searchBtn">検索</button>
+    <form method="GET">
+      <button id="toolBar-editBtn" formaction="/edit<%= name %>">編集</button>
+      <button id="toolBar-listBtn">一覧</button>
+      <button id="toolBar-searchBtn">検索</button>
+    </form>
   </div>
   <%- content %>
 </body>
