@@ -1,36 +1,9 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  <title><%= fileName %>の編集 - <%= siteConfig.siteName %></title>
-</head>
-<body>
-  <header class="header">
-    <h1 class="header_title"><%= siteConfig.siteName %></h1>
-    <nav id="toolBar">
-      <form method="GET">
-        <button id="toolBar-backBtn" formaction="<%= fileURL %>">戻る</button>
-        <button id="toolBar-listBtn" formaction="/list/">一覧</button>
-        <button id="toolBar-searchBtn" formaction="/search/">検索</button>
-      </form>
-    </nav>
-  </header>
-  <main class="main">
-    <div id="field">
-      <form method="POST" action="/edit/">
-        <input type="hidden" name="url" value="<%= fileURL %>">
-        <textarea id="field-contentText" name="content"><%= fileContent %></textarea>
-        <div class="field-confirmBar">
-          <button id="field-confirmBar-saveBtn">保存</button>
-        </div>
-      </form>
+<div id="field">
+  <form method="POST" action="/edit/">
+    <input type="hidden" name="url" value="<%= fileURL %>">
+    <textarea id="field-contentText" name="content"><%= fileContent %></textarea>
+    <div class="field-confirmBar">
+      <button id="field-confirmBar-saveBtn">保存</button>
     </div>
-  </main>
-  <footer class="footer">
-    <%= siteConfig.copyRight %>
-  </footer>
-</body>
-</html>
+  </form>
+</div>

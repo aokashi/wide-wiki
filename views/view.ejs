@@ -5,22 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="/stylesheets/style.css">
-  <title><%= fileName %> - <%= siteConfig.siteName %></title>
+  <title><%= title %> - <%= siteConfig.siteName %></title>
 </head>
 <body>
   <header class="header">
     <h1 class="header_title"><%= siteConfig.siteName %></h1>
     <nav id="toolBar">
       <form method="GET">
+      <% if (mode === 'content') { %>
         <button id="toolBar-editBtn" formaction="/edit<%= fileURL %>">編集</button>
+      <% } else if (mode === 'edit') { %>
+        <button id="toolBar-backBtn" formaction="<%= fileURL %>">戻る</button>
+      <% } else { %>
+        <button id="toolBar-backBtn" formaction="/">戻る</button>
+      <% } %>
+      <% if (mode != 'list') { %>
         <button id="toolBar-listBtn" formaction="/list/">一覧</button>
+      <% } %>
+      <% if (mode != 'search') { %>
         <button id="toolBar-searchBtn" formaction="/search/">検索</button>
+      <% } %>
       </form>
     </nav>
   </header>
   <main class="main">
     <section>
+    <% if (mode === 'edit') { %>
+      <%- include('edit'); %>
+    <% } else if (mode === 'list') { %>
+      <%- include('list'); %>
+    <% } else if (mode === 'search') {%>
+      <%- include('search'); %>
+    <% } else { %>
       <%- fileContent %>
+    <% } %>
     </section>
   </main>
   <footer class="footer">

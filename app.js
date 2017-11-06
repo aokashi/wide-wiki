@@ -42,7 +42,9 @@ app.use(function(req, res, next) {
     } else {
       res.locals.fileContent = markdown.toHTML(fileData);
     }
-    res.render('content', {
+    res.render('view', {
+      title: fileURL.substr(1),
+      mode: 'content',
       siteConfig: config,
       fileName: fileURL.substr(1),
       fileURL: fileURL

@@ -17,7 +17,9 @@ router.get('/', function(req, res, next) {
     directoryList.forEach(function(page) {
       pageList.push(path.basename(page, '.md')); // basename 関数の2つ目の引数に拡張子を指定すると、拡張子が外れた形で返してもらえます。
     });
-    res.render('list', {
+    res.render('view', {
+      title: 'ページの一覧',
+      mode: 'list',
       siteConfig: config,
       pageList: pageList
     });

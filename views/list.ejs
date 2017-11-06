@@ -1,33 +1,5 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  <title>ページの一覧 - <%= siteConfig.siteName %></title>
-</head>
-<body>
-  <header class="header">
-    <h1 class="header_title"><%= siteConfig.siteName %></h1>
-    <nav id="toolBar">
-      <form method="GET">
-        <button id="toolBar-topBtn" formaction="/">トップ</button>
-        <button id="toolBar-searchBtn" formaction="/search/">検索</button>
-      </form>
-    </nav>
-  </header>
-  <main class="main">
-    <section>
-      <ul>
-      <% pageList.forEach(function(page) { %>
-        <li><a href="/<%= page %>"><%= page %></a></li>
-      <% }); %>
-      </ul>
-    </section>
-  </main>
-  <footer class="footer">
-    <%= siteConfig.copyRight %>
-  </footer>
-</body>
-</html>
+<ul>
+<% pageList.forEach(function(page) { %>
+  <li><a href="/<%= page %>"><%= page %></a></li>
+<% }); %>
+</ul>

@@ -56,7 +56,9 @@ router.get('/*', function(req, res, next) {
     if (!fileError) {
       fileContent += fileData;
     }
-    res.render('edit', {
+    res.render('view', {
+      title: fileURL.substr(1) + 'の編集',
+      mode: 'edit',
       siteConfig: config,
       fileName: fileURL.substr(1),
       fileURL: fileURL,
