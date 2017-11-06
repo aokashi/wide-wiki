@@ -10,13 +10,13 @@
 <body>
   <header class="header">
     <h1 class="header_title"><%= siteConfig.siteName %></h1>
-    <div id="toolBar">
+    <nav id="toolBar">
       <form method="GET">
         <button id="toolBar-backBtn" formaction="<%= fileURL %>">戻る</button>
         <button id="toolBar-listBtn" formaction="/list/">一覧</button>
         <button id="toolBar-searchBtn" formaction="/search/">検索</button>
       </form>
-    </div>
+    </nav>
   </header>
   <main class="main">
     <div id="field">
