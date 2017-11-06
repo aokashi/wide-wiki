@@ -8,8 +8,8 @@
   <title><%= fileName %> - <%= siteConfig.siteName %></title>
 </head>
 <body>
-  <header>
-    <h1><%= siteConfig.siteName %></h1>
+  <header class="header">
+    <h1 class="header_title"><%= siteConfig.siteName %></h1>
     <nav id="toolBar">
       <form method="GET">
         <button id="toolBar-editBtn" formaction="/edit<%= fileURL %>">編集</button>
@@ -18,6 +18,13 @@
       </form>
     </nav>
   </header>
-  <%- fileContent %>
+  <main class="main">
+    <section>
+      <%- fileContent %>
+    </section>
+  </main>
+  <footer class="footer">
+    <%= siteConfig.copyRight %>
+  </footer>
 </body>
 </html>

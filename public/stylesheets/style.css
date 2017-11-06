@@ -1,13 +1,42 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
 }
 
 a {
   color: #00B7FF;
 }
 
+code,
+pre {
+  background-color: #e0e0e0;
+  border: 1px solid #a0a0a0;
+  padding: .25rem;
+}
+
 #field-contentText {
   height: 25em;
   width: 100%;
+}
+
+.header,
+.footer {
+  padding: 1rem;
+}
+
+.header {
+  background-color: #c0c0c0;
+  color: #000;
+}
+
+.main {
+  padding: 2rem;
+}
+
+.main h1 {
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.footer {
+  background-color: #404040;
+  color: #fff;
 }

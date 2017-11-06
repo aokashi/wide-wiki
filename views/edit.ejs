@@ -8,8 +8,8 @@
   <title><%= fileName %>の編集 - <%= siteConfig.siteName %></title>
 </head>
 <body>
-  <header>
-    <h1><%= siteConfig.siteName %></h1>
+  <header class="header">
+    <h1 class="header_title"><%= siteConfig.siteName %></h1>
     <div id="toolBar">
       <form method="GET">
         <button id="toolBar-backBtn" formaction="<%= fileURL %>">戻る</button>
@@ -18,14 +18,19 @@
       </form>
     </div>
   </header>
-  <div id="field">
-    <form method="POST" action="/edit/">
-      <input type="hidden" name="url" value="<%= fileURL %>">
-      <textarea id="field-contentText" name="content"><%= fileContent %></textarea>
-      <div class="field-confirmBar">
-        <button id="field-confirmBar-saveBtn">保存</button>
-      </div>
-    </form>
-  </div>
+  <main class="main">
+    <div id="field">
+      <form method="POST" action="/edit/">
+        <input type="hidden" name="url" value="<%= fileURL %>">
+        <textarea id="field-contentText" name="content"><%= fileContent %></textarea>
+        <div class="field-confirmBar">
+          <button id="field-confirmBar-saveBtn">保存</button>
+        </div>
+      </form>
+    </div>
+  </main>
+  <footer class="footer">
+    <%= siteConfig.copyRight %>
+  </footer>
 </body>
 </html>

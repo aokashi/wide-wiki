@@ -1,5 +1,6 @@
 {
   "siteName": "Node.js Wiki",
   "adminName": "Aokashi",
-  "adminURL": "https://www.aokashi.net/"
+  "adminURL": "https://www.aokashi.net/",
+  "copyRight": "Copyright © 2010-2017 Aokashi."
 }
