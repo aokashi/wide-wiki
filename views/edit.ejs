@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="/stylesheets/style.css">
-  <title><%= fileName %>の編集</title>
+  <title><%= fileName %>の編集 - <%= siteConfig.siteName %></title>
 </head>
 <body>
   <header>
+    <h1><%= siteConfig.siteName %></h1>
     <div id="toolBar">
       <form method="GET">
         <button id="toolBar-backBtn" formaction="<%= fileURL %>">戻る</button>

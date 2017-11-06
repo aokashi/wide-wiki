@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var config = require('../config');
 
 var fs = require('fs');
 var path = require('path');
@@ -56,6 +57,7 @@ router.get('/*', function(req, res, next) {
       fileContent += fileData;
     }
     res.render('edit', {
+      siteConfig: config,
       fileName: fileURL.substr(1),
       fileURL: fileURL,
       fileContent: fileContent
