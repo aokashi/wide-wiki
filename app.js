@@ -4,10 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var jsonfile = require('jsonfile');
 var fs = require('fs');
 var markdown = require('markdown').markdown;
 
-var config = require('./config.json');
+var config;
+jsonfile.readFile('./config.json', 'UTF-8', function(configError, configContent) {
+  if (configError) {
+    var err = new Error('Config Error!');
+    err.status = 500;
+    next(err);
+  } 
+  config = configContent;
+});
 
 var edit = require('./routes/edit');
 var list = require('./routes/list');
@@ -33,7 +42,7 @@ app.use('/search', search);
 
 app.use(function(req, res, next) {
   // contentディレクトリの中にmarkdownファイルを置きます。
-  fs.readFile(path.join(__dirname, 'content', req.url + '.md'), "UTF-8", function(fileError, fileData) {
+  fs.readFile(path.join(__dirname, 'content', req.url + '.md'), 'UTF-8', function(fileError, fileData) {
     if (fileError) {
       // catch 404 and forward to error handler
       var err = new Error('Not Found');
