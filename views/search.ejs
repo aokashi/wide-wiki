@@ -1,0 +1,15 @@
+<section>
+  <div id="field">
+    <form method="GET" action="/search">
+      <p><input id="field-queryText" type="text" name="query"></p>
+      <p><button id="field-searchBtn">検索</button></p>
+    </form>
+  </div>
+  <% if (hasQuery) { %>
+  <ul>
+  <% searchResult.forEach(function(page) { %>
+    <li><a href="<%= page.URL %>"><%= page.name %></a></li>
+  <% }); %>
+  </ul>
+  <% } %>
+</section>

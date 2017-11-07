@@ -4,9 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var fs = require('fs');
+var markdown = require('markdown').markdown;
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+var config = require('./config');
+var edit = require('./routes/edit');
+var list = require('./routes/list');
+var search = require('./routes/search');
 
 var app = express();
 
@@ -22,14 +26,30 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+app.use('/edit', edit);
+app.use('/list', list);
+app.use('/search', search);
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  var fileURL = req.url;
+  if (fileURL === '/') {
+    fileURL += 'index'; // ルートの記事はindexから参照されます。
+  }
+  // contentディレクトリの中にmarkdownファイルを置きます。
+  fs.readFile(path.join(__dirname, 'content', fileURL + '.md'), "UTF-8", function(fileError, fileData) {
+    if (fileError) {
+      res.locals.fileContent = fileURL.substr(1) + "の記事は見つかりませんでした。ツールバーの「編集」から新規作成ができます。";
+    } else {
+      res.locals.fileContent = markdown.toHTML(fileData);
+    }
+    res.render('view', {
+      title: fileURL.substr(1),
+      mode: 'content',
+      siteConfig: config,
+      fileName: fileURL.substr(1),
+      fileURL: fileURL
+    });
+  });
 });
 
 // error handler
