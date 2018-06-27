@@ -1,11 +1,9 @@
-# Node.js Wiki
-
-**リポジトリ名「express-test」は仮称です。今後変更する予定があります。**
+# Wide Wiki - Wide: internet dictionary environment
 
 Node.js(Express)で動作するWikiシステムです。公開すれば誰でも閲覧、編集するWikiが利用できます。
 
 ## 実行するには？
-- Node.js 8.9.0 LTS (nodist 0.8.8) で開発しています。
+- Node.js 8.x LTS で開発しています。
 
 実行する際は Node.js が必要になります。
 
