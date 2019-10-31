@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
-var markdown = require('markdown').markdown;
+var marked = require('marked');
 
 var config = require('./config');
 var edit = require('./routes/edit');
@@ -40,7 +40,7 @@ app.use(function(req, res, next) {
     if (fileError) {
       res.locals.fileContent = fileURL.substr(1) + "の記事は見つかりませんでした。ツールバーの「編集」から新規作成ができます。";
     } else {
-      res.locals.fileContent = markdown.toHTML(fileData);
+      res.locals.fileContent = marked(fileData);
     }
     res.render('view', {
       title: fileURL.substr(1),

@@ -13,6 +13,11 @@ pre {
   padding: .25rem;
 }
 
+pre > code {
+  border: none;
+  padding: 0;
+}
+
 #field-contentText {
   height: 25em;
   width: 100%;
